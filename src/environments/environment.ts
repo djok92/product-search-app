@@ -5,6 +5,14 @@
 export const environment = {
   production: false
 };
+const API = "https://pcsa57ebsj.execute-api.us-east-1.amazonaws.com/api";
+
+export const apiProducts = {
+  searchProducts: `${API}/products/search?query=`
+};
+export const apiCategories = {
+  listCategories: `${API}/products/categories`
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
