@@ -4,9 +4,10 @@
   </span>
   <span class="search-form__category-name" *ngIf="activeCategoryName">{{ activeCategoryName }}</span>
   <div class="search-form__input-holder">
-    <input (keyup)="logKeyup($event)" class="search-form__input" type="text" placeholder="Enter your search terms"
+    <input (keyup)="handleKeyup($event)" class="search-form__input" type="text" placeholder="Enter your search terms"
       formControlName="searchValue">
-    <span class="search-form__clear" [hidden]="searchValueControl.value === '' " (click)="clearAllValues()">
+    <span class="search-form__clear" [hidden]="searchValueControl.value === '' && activeCategoryName === null"
+      (click)="clearAllValues()">
       <fa-icon [icon]="timesIcon"></fa-icon>
     </span>
   </div>

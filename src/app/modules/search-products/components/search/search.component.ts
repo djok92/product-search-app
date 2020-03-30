@@ -12,7 +12,7 @@ export class SearchComponent implements OnInit {
   constructor() {}
 
   public hasGeneratedActiveCategory = false;
-  public activeCategoryName: string | null;
+  public activeCategoryName: string | null = null;
 
   @Input() form: FormGroup;
   @Input() timesIcon: IconDefinition;
@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
     this.hasGeneratedActiveCategory = false;
   }
 
-  public logKeyup(event: any): void {
+  public handleKeyup(event: any): void {
     if (
       (event.keyCode === 32 || event.keyCode === 13) &&
       !this.hasGeneratedActiveCategory

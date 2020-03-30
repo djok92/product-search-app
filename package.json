@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:plugin": "npm install ../ng-search-renderer/dist/ng-search-renderer/ng-search-renderer-0.0.1.tgz",
+    "build:plugin": "npm install assets/ng-search-renderer-0.0.1.tgz",
     "build:app": "npm i && npm run build:plugin && ng serve -o"
   },
   "private": true,
