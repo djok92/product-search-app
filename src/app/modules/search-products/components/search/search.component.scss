@@ -5,12 +5,11 @@
   justify-content: space-between;
   padding: 32px;
   border-radius: 8px;
-  // border-bottom: 1px solid $white;
-  // box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.18);
 
   &__search {
     color: $grey;
     margin-right: 30px;
+    cursor: pointer;
   }
 
   &__category-name {
@@ -48,4 +47,11 @@
       }
     }
   }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
 }

@@ -1,5 +1,5 @@
 <form class="search-form" [formGroup]="form">
-  <span class=search-form__search>
+  <span class=search-form__search (click)="sendSearchValues()">
     <fa-icon [icon]="searchIcon" size="2x"></fa-icon>
   </span>
   <span class="search-form__category-name" *ngIf="activeCategoryName">{{ activeCategoryName }}</span>
@@ -12,3 +12,6 @@
     </span>
   </div>
 </form>
+<div *ngIf="hasError" class="error-message">
+  <p>Please enter category and the search term.</p>
+</div>

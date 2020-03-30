@@ -7,6 +7,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { SearchFormData } from "src/app/interfaces/Search-form-data";
+import { Category } from "ng-search-renderer";
 
 @Component({
   selector: "app-search-products",

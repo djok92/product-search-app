@@ -12,6 +12,7 @@ export class SearchComponent implements OnInit {
   constructor() {}
 
   public hasGeneratedActiveCategory = false;
+  public hasError: boolean;
   public activeCategoryName: string | null = null;
 
   @Input() form: FormGroup;
@@ -29,10 +30,15 @@ export class SearchComponent implements OnInit {
   }
 
   public sendSearchValues(): void {
-    this.emitSearchFormValues.emit({
-      activeCategoryName: this.activeCategoryName,
-      searchQuery: this.form.value.searchValue
-    });
+    if (this.form.valid && this.activeCategoryName) {
+      this.hasError = false;
+      this.emitSearchFormValues.emit({
+        activeCategoryName: this.activeCategoryName,
+        searchQuery: this.form.value.searchValue
+      });
+    } else {
+      this.hasError = true;
+    }
   }
 
   public clearSearchValues(): void {
@@ -53,12 +59,10 @@ export class SearchComponent implements OnInit {
       this.hasGeneratedActiveCategory = true;
       this.activeCategoryName = this.generateActiveCategoryName();
       this.clearSearchValues();
-    } else if (event.keyCode === 13 && this.hasGeneratedActiveCategory) {
-      this.sendSearchValues();
     }
   }
 
   public generateActiveCategoryName(): string {
-    return this.form.value.searchValue;
+    return this.form.value.searchValue.trim();
   }
 }
