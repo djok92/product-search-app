@@ -1,0 +1,26 @@
+@import "../../../../../assets/variables";
+
+.search-products {
+  background-color: $white;
+  margin: 0 auto;
+  padding: 20px 10px;
+  width: 910px;
+
+  &__refresh-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin: 0 auto;
+    color: $grey-secondary;
+    background-color: #eceff3;
+    font-family: $font-family;
+    box-shadow: 0 2px 4px 0 rgba(28, 26, 26, 0.2);
+    border: solid 1px #c0cad8;
+
+    .sync {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+  }
+}

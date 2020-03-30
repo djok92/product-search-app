@@ -1,3 +1,26 @@
-<p>search-products works!</p>
-<app-search [form]="searchForm" (emitSearchFormValues)="getSearchValues($event)">
-</app-search>
+<div class="search-products">
+  <app-search
+    [timesIcon]="timesIcon"
+    [searchIcon]="searchIcon"
+    [form]="searchForm"
+    (emitSearchFormValues)="getSearchValues($event)"
+    (emitClearSearchValues)="clearSearchValues()"
+  >
+  </app-search>
+  <ng-results
+    *ngIf="products"
+    [activeCategoryName]="searchFormData?.activeCategoryName"
+    [categories]="categories"
+    [products]="products"
+  >
+  </ng-results>
+  <button
+    class="search-products__refresh-results"
+    *ngIf="products"
+    (click)="refreshResults()"
+  >
+    <span class="sync">
+      <fa-icon [icon]="syncIcon"></fa-icon> </span
+    >Refresh results
+  </button>
+</div>

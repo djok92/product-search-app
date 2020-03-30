@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
-import { SearchForm } from "src/app/interfaces/Search-Form";
 import { SearchProductService } from "src/app/services/search-product.service";
-import { ApiParamsData } from "src/app/interfaces/Api-params-data";
 import { ProductCategory } from "src/app/interfaces/Product-category";
+import { Product } from "src/app/interfaces/Product";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
+import { SearchFormData } from "src/app/interfaces/Search-form-data";
 
 @Component({
   selector: "app-search-products",
@@ -11,8 +14,16 @@ import { ProductCategory } from "src/app/interfaces/Product-category";
   styleUrls: ["./search-products.component.scss"]
 })
 export class SearchProductsComponent implements OnInit {
+  public timesIcon = faTimes;
+  public searchIcon = faSearch;
+  public syncIcon = faSync;
+
   public searchForm: FormGroup;
-  public apiParamsData: ApiParamsData;
+  public searchFormData: SearchFormData;
+  public searchQuery: string;
+  public activeCategoryName: string;
+  public categories: ProductCategory[];
+  public products: Product[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,16 +34,44 @@ export class SearchProductsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
-  public getSearchValues(searchFormValue: SearchForm): void {
-    this.apiParamsData = this.searchProductsService.mapFormValues(
-      searchFormValue
-    );
+  ngOnInit() {
     this.searchProductsService
       .getProductCategories()
-      .subscribe((response: ProductCategory[]) => {
-        console.log(response);
+      .subscribe((categories: ProductCategory[]) => {
+        this.categories = categories;
       });
+  }
+
+  public getSearchValues(searchFormValue: SearchFormData): void {
+    this.searchFormData = searchFormValue;
+    this.activeCategoryName = this.searchFormData.activeCategoryName;
+    this.searchQuery = this.searchFormData.searchQuery;
+    this.searchProductsService
+      .getProducts(this.searchQuery)
+      .subscribe((products: Product[]) => {
+        this.products = products;
+      });
+  }
+
+  public refreshResults(): void {
+    this.searchProductsService
+      .getProducts(this.searchQuery)
+      .subscribe((products: Product[]) => {
+        //We will get same results, because API always gives same results for given parameters
+        //shuffleArray simulates new results from API
+        this.products = this.shuffleArray(products);
+      });
+  }
+
+  public clearSearchValues(): void {
+    this.searchForm.reset();
+  }
+
+  private shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 }

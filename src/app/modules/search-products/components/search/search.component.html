@@ -1,5 +1,13 @@
-<p>henlo</p>
-<form [formGroup]="form">
-  <input type="text" placeholder="Enter your search terms" formControlName="searchValue">
+<form class="search-form" [formGroup]="form">
+  <span class=search-form__search>
+    <fa-icon [icon]="searchIcon" size="2x"></fa-icon>
+  </span>
+  <span class="search-form__category-name" *ngIf="activeCategoryName">{{ activeCategoryName }}</span>
+  <div class="search-form__input-holder">
+    <input (keyup)="logKeyup($event)" class="search-form__input" type="text" placeholder="Enter your search terms"
+      formControlName="searchValue">
+    <span class="search-form__clear" [hidden]="searchValueControl.value === '' " (click)="clearAllValues()">
+      <fa-icon [icon]="timesIcon"></fa-icon>
+    </span>
+  </div>
 </form>
-<button (click)="sendSearchValues()">Click me!</button>

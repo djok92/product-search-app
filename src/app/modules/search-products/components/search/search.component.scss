@@ -1,0 +1,51 @@
+@import '../../../../../assets/variables';
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
+  border-radius: 8px;
+  // border-bottom: 1px solid $white;
+  // box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.18);
+
+  &__search {
+    color: $grey;
+    margin-right: 30px;
+  }
+
+  &__category-name {
+    font-size: 24px;
+    color: $purple;
+    background-color: $pink;
+    padding: 5px 8px;
+    border-radius: 4px;
+  }
+
+  &__clear {
+    position: absolute;
+    right: 32px;
+    cursor: pointer;
+  }
+
+  &__input-holder {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+
+    input {
+      flex: 1;
+      border: none;
+      padding: 0 5px;
+      font-family: $font-family;
+      font-size: 24px;
+
+      &::placeholder {
+        font-size: 24px;
+        color: $grey;
+        font-weight: 300;
+      }
+    }
+  }
+}

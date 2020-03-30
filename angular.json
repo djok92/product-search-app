@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/product-search-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -26,7 +27,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["src/assets/product-list.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
