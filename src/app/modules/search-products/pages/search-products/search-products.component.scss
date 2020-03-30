@@ -17,10 +17,10 @@
     font-family: $font-family;
     box-shadow: 0 2px 4px 0 rgba(28, 26, 26, 0.2);
     border: solid 1px #c0cad8;
+    cursor: pointer;
 
     .sync {
       margin-right: 8px;
-      cursor: pointer;
     }
   }
 }
