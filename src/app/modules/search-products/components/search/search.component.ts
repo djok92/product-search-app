@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { FormGroup, AbstractControl } from "@angular/forms";
-import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { SearchFormData } from "src/app/interfaces/Search-form-data";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, AbstractControl } from '@angular/forms';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { SearchFormData } from 'src/app/interfaces/Search-form-data';
 
 @Component({
-  selector: "app-search",
-  templateUrl: "./search.component.html",
-  styleUrls: ["./search.component.scss"]
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
   constructor() {}
@@ -18,9 +18,7 @@ export class SearchComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() timesIcon: IconDefinition;
   @Input() searchIcon: IconDefinition;
-  @Output() emitSearchFormValues: EventEmitter<
-    SearchFormData
-  > = new EventEmitter();
+  @Output() emitSearchFormValues: EventEmitter<SearchFormData> = new EventEmitter();
   @Output() emitClearSearchValues: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {}
@@ -53,10 +51,7 @@ export class SearchComponent implements OnInit {
   }
 
   public handleKeyup(event: KeyboardEvent): void {
-    if (
-      (event.keyCode === 32 || event.keyCode === 13) &&
-      !this.hasGeneratedActiveCategory
-    ) {
+    if ((event.keyCode === 32 || event.keyCode === 13) && !this.hasGeneratedActiveCategory) {
       this.hasGeneratedActiveCategory = true;
       this.activeCategoryName = this.generateActiveCategoryName();
       this.clearSearchValues();

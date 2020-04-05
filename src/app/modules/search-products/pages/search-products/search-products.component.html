@@ -3,7 +3,7 @@
     (emitSearchFormValues)="getSearchValues($event)" (emitClearSearchValues)="clearSearchValues()">
   </app-search>
   <ng-results *ngIf="products" [activeCategoryName]="searchFormData?.activeCategoryName" [categories]="categories"
-    [products]="products">
+    [products]="products" [searchMode]="searchMode">
   </ng-results>
   <button class="search-products__refresh-results" *ngIf="showSyncButton" (click)="refreshResults()">
     <span class="sync">
