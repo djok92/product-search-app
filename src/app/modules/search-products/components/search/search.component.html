@@ -6,7 +6,7 @@
   <div class="search-form__input-holder">
     <input (keyup)="handleKeyup($event)" class="search-form__input" type="text" placeholder="Enter your search terms"
       formControlName="searchValue">
-    <span class="search-form__clear" [hidden]="searchValueControl.value === '' && activeCategoryName === null"
+    <span class="search-form__clear" [hidden]="!searchValueControl.value && !activeCategoryName"
       (click)="clearAllValues()">
       <fa-icon [icon]="timesIcon"></fa-icon>
     </span>

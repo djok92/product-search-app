@@ -25,6 +25,8 @@ export class SearchProductsComponent implements OnInit {
   public activeCategoryName: string;
   public categories: ProductCategory[];
   public products: Product[];
+  public hasPluginHandlerForCategory: boolean;
+  public showSyncButton: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,6 +53,10 @@ export class SearchProductsComponent implements OnInit {
       .getProducts(this.searchQuery)
       .subscribe((products: Product[]) => {
         this.products = products;
+        this.hasPluginHandlerForCategory = this.checkIfHasPluginHandler(
+          this.activeCategoryName
+        );
+        this.showSyncButton = this.checkIfShowSyncButton();
       });
   }
 
@@ -66,6 +72,19 @@ export class SearchProductsComponent implements OnInit {
 
   public clearSearchValues(): void {
     this.searchForm.reset();
+  }
+
+  private checkIfShowSyncButton(): boolean {
+    return (
+      this.products && this.products.length && this.hasPluginHandlerForCategory
+    );
+  }
+
+  private checkIfHasPluginHandler(activeCategoryName): boolean {
+    return this.categories.some(
+      (category: Category) =>
+        category.name.toLowerCase() === activeCategoryName.toLowerCase()
+    );
   }
 
   private shuffleArray(array) {

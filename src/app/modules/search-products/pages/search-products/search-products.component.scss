@@ -2,9 +2,10 @@
 
 .search-products {
   background-color: $white;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 20px 10px;
   width: 910px;
+  border-radius: 8px;
 
   &__refresh-results {
     display: flex;

@@ -49,9 +49,10 @@ export class SearchComponent implements OnInit {
     this.emitClearSearchValues.emit();
     this.activeCategoryName = null;
     this.hasGeneratedActiveCategory = false;
+    this.hasError = false;
   }
 
-  public handleKeyup(event: any): void {
+  public handleKeyup(event: KeyboardEvent): void {
     if (
       (event.keyCode === 32 || event.keyCode === 13) &&
       !this.hasGeneratedActiveCategory
@@ -59,10 +60,12 @@ export class SearchComponent implements OnInit {
       this.hasGeneratedActiveCategory = true;
       this.activeCategoryName = this.generateActiveCategoryName();
       this.clearSearchValues();
+    } else if (event.keyCode === 13 && this.hasGeneratedActiveCategory) {
+      this.sendSearchValues();
     }
   }
 
-  public generateActiveCategoryName(): string {
+  private generateActiveCategoryName(): string {
     return this.form.value.searchValue.trim();
   }
 }
